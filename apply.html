@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BufaloAI - Apply</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 250px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
+            transform: translateX(-250px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar.active {
+            transform: translateX(0);
+        }
+
+        .nav-toggle {
+            position: fixed;
+            left: 10px;
+            top: 20px;
+            background: #d65a00;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle:hover {
+            background: #ff6a00;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 80px 20px 20px;
+        }
+
+        .nav-links li {
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #d65a00;
+            transform: translateX(5px);
+        }
+
+        /* Top Right Corner */
+        .top-right {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d65a00;
+            margin-right: 20px;
+        }
+
+        .auth-btn {
+            padding: 10px 25px;
+            border: 2px solid #d65a00;
+            background: transparent;
+            color: #d65a00;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            background: #d65a00;
+            color: white;
+        }
+
+        /* Blank Page */
+        .blank-page-content {
+            min-height: 100vh;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 20px 60px;
+        }
+
+        .blank-content {
+            text-align: center;
+            color: #666;
+        }
+
+        .blank-content h1 {
+            font-size: 36px;
+            color: #d65a00;
+            margin-bottom: 20px;
+        }
+
+        .blank-content p {
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .auth-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+
+    <nav class="navbar" id="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Main Page</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="team.html" class="nav-link">Our Team</a></li>
+            <li><a href="connect.html" class="nav-link">Connect Us</a></li>
+            <li><a href="apply.html" class="nav-link active">Apply</a></li>
+        </ul>
+    </nav>
+
+    <div class="top-right">
+        <span class="logo-text">BufaloAI</span>
+        <button class="auth-btn">Sign In</button>
+        <button class="auth-btn">Log In</button>
+    </div>
+
+    <main class="blank-page-content">
+        <div class="blank-content">
+            <h1>Apply</h1>
+            <p>Coming Soon...</p>
+        </div>
+    </main>
+
+    <script>
+        // Toggle Navigation
+        function toggleNav() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('active');
+        }
+
+        // Close nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const navbar = document.getElementById('navbar');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            if (!navbar.contains(event.target) && !navToggle.contains(event.target)) {
+                navbar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

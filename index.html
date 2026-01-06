@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BufaloAI - Main Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 250px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
+            transform: translateX(-250px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar.active {
+            transform: translateX(0);
+        }
+
+        .nav-toggle {
+            position: fixed;
+            left: 10px;
+            top: 20px;
+            background: #d65a00;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle:hover {
+            background: #ff6a00;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 80px 20px 20px;
+        }
+
+        .nav-links li {
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #d65a00;
+            transform: translateX(5px);
+        }
+
+        /* Top Right Corner */
+        .top-right {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d65a00;
+            margin-right: 20px;
+        }
+
+        .auth-btn {
+            padding: 10px 25px;
+            border: 2px solid #d65a00;
+            background: transparent;
+            color: #d65a00;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            background: #d65a00;
+            color: white;
+        }
+
+        /* Start Section */
+        .start-section {
+            min-height: 60vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 60px;
+        }
+
+        .prompt-container {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .prompt-input {
+            width: 100%;
+            padding: 20px 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .prompt-input:focus {
+            border-color: #d65a00;
+            box-shadow: 0 0 0 3px rgba(214, 90, 0, 0.1);
+        }
+
+        .prompt-input::placeholder {
+            color: #999;
+        }
+
+        /* Middle Section */
+        .middle-section {
+            min-height: 40vh;
+            background: #000;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .middle-section h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #d65a00;
+            font-weight: 700;
+        }
+
+        .middle-section p {
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 900px;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+        }
+
+        .learn-more-btn {
+            padding: 15px 40px;
+            background: #d65a00;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .learn-more-btn:hover {
+            background: #ff6a00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(214, 90, 0, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .middle-section h1 {
+                font-size: 32px;
+            }
+
+            .middle-section p {
+                font-size: 16px;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .auth-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Toggle Button -->
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link active">Main Page</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="team.html" class="nav-link">Our Team</a></li>
+            <li><a href="connect.html" class="nav-link">Connect Us</a></li>
+            <li><a href="apply.html" class="nav-link">Apply</a></li>
+        </ul>
+    </nav>
+
+    <!-- Top Right Corner -->
+    <div class="top-right">
+        <span class="logo-text">BufaloAI</span>
+        <button class="auth-btn">Sign In</button>
+        <button class="auth-btn">Log In</button>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Start Section -->
+        <section class="start-section">
+            <div class="prompt-container">
+                <input 
+                    type="text" 
+                    class="prompt-input" 
+                    placeholder="Prompt BufaloAI as you wish..."
+                >
+            </div>
+        </section>
+
+        <!-- Middle Section -->
+        <section class="middle-section">
+            <h1>Revolutionizing Tomorrow with AI</h1>
+            <p>Welcome to the future of innovation with our cutting-edge artificial intelligence solutions. Unleash unparalleled potential and redefine the boundaries of what's possible by integrating our AI technology into your strategic vision.</p>
+            <button class="learn-more-btn" onclick="window.location.href='about.html'">Learn More</button>
+        </section>
+    </main>
+
+    <script>
+        // Toggle Navigation
+        function toggleNav() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('active');
+        }
+
+        // Close nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const navbar = document.getElementById('navbar');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            if (!navbar.contains(event.target) && !navToggle.contains(event.target)) {
+                navbar.classList.remove('active');
+            }
+        });
+
+        // Prompt input handler
+        document.querySelector('.prompt-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                alert('AI interface will be implemented in a separate subdomain. Your prompt: ' + this.value);
+                this.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
