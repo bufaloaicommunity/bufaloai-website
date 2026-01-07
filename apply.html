@@ -67,7 +67,9 @@
             color: white;
             text-decoration: none;
             font-size: 18px;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px 15px;
             border-radius: 8px;
             transition: all 0.3s ease;
@@ -77,6 +79,10 @@
         .nav-links a.active {
             background: #d65a00;
             transform: translateX(5px);
+        }
+
+        .nav-icon {
+            font-size: 20px;
         }
 
         /* Top Right Corner */
@@ -157,11 +163,11 @@
 
     <nav class="navbar" id="navbar">
         <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Main Page</a></li>
-            <li><a href="about.html" class="nav-link">About</a></li>
-            <li><a href="team.html" class="nav-link">Our Team</a></li>
-            <li><a href="connect.html" class="nav-link">Connect Us</a></li>
-            <li><a href="apply.html" class="nav-link active">Apply</a></li>
+            <li><a href="index.html" class="nav-link"><span class="nav-icon">🏠</span>Main Page</a></li>
+            <li><a href="about.html" class="nav-link"><span class="nav-icon">ℹ️</span>About</a></li>
+            <li><a href="team.html" class="nav-link"><span class="nav-icon">👥</span>Our Team</a></li>
+            <li><a href="news.html" class="nav-link"><span class="nav-icon">📰</span>News & Published Work</a></li>
+            <li><a href="apply.html" class="nav-link active"><span class="nav-icon">📝</span>Apply</a></li>
         </ul>
     </nav>
 

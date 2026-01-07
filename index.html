@@ -67,7 +67,9 @@
             color: white;
             text-decoration: none;
             font-size: 18px;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px 15px;
             border-radius: 8px;
             transition: all 0.3s ease;
@@ -77,6 +79,10 @@
         .nav-links a.active {
             background: #d65a00;
             transform: translateX(5px);
+        }
+
+        .nav-icon {
+            font-size: 20px;
         }
 
         /* Top Right Corner */
@@ -125,6 +131,14 @@
             padding: 100px 20px 60px;
         }
 
+        .main-title {
+            font-size: 42px;
+            color: #d65a00;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
         .prompt-container {
             width: 100%;
             max-width: 800px;
@@ -151,60 +165,259 @@
             color: #999;
         }
 
-        /* Middle Section */
-        .middle-section {
-            min-height: 40vh;
-            background: #000;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 20px;
-            text-align: center;
+        /* Progress Section */
+        .progress-section {
+            background: white;
+            padding: 60px 20px;
         }
 
-        .middle-section h1 {
-            font-size: 48px;
-            margin-bottom: 30px;
+        .progress-title {
+            text-align: center;
+            font-size: 36px;
             color: #d65a00;
+            margin-bottom: 50px;
             font-weight: 700;
         }
 
-        .middle-section p {
-            font-size: 18px;
-            line-height: 1.8;
-            max-width: 900px;
-            margin-bottom: 40px;
-            color: #e0e0e0;
+        .progress-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 40px;
+            align-items: start;
         }
 
-        .learn-more-btn {
-            padding: 15px 40px;
-            background: #d65a00;
+        /* Left Section - Articles */
+        .articles-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .article-card {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            border-color: #d65a00;
+            box-shadow: 0 4px 12px rgba(214, 90, 0, 0.1);
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .article-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Middle Section - Statistics */
+        .stats-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stat-pill {
+            background: linear-gradient(135deg, #d65a00, #ff6a00);
             color: white;
-            border: none;
-            border-radius: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(214, 90, 0, 0.2);
         }
 
-        .learn-more-btn:hover {
+        .stat-pill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(214, 90, 0, 0.3);
+        }
+
+        /* Right Section - Products */
+        .products-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: #d65a00;
+            box-shadow: 0 4px 12px rgba(214, 90, 0, 0.1);
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Learn More Links */
+        .learn-more-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .learn-more-link a {
+            color: #d65a00;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .learn-more-link a:hover {
+            color: #ff6a00;
+        }
+
+        /* Footer Section */
+        .footer-section {
+            background: #000;
+            color: white;
+            padding: 60px 20px 40px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d65a00;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #d65a00;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
             background: #ff6a00;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(214, 90, 0, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .footer-right {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            color: #d65a00;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .footer-column a:hover {
+            color: #d65a00;
+            padding-left: 5px;
+        }
+
+        .footer-column a.active {
+            color: white;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .middle-section h1 {
-                font-size: 32px;
+        @media (max-width: 1200px) {
+            .progress-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
 
-            .middle-section p {
-                font-size: 16px;
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 28px;
+            }
+
+            .progress-title {
+                font-size: 28px;
             }
 
             .logo-text {
@@ -225,11 +438,11 @@
     <!-- Navigation Bar -->
     <nav class="navbar" id="navbar">
         <ul class="nav-links">
-            <li><a href="index.html" class="nav-link active">Main Page</a></li>
-            <li><a href="about.html" class="nav-link">About</a></li>
-            <li><a href="team.html" class="nav-link">Our Team</a></li>
-            <li><a href="connect.html" class="nav-link">Connect Us</a></li>
-            <li><a href="apply.html" class="nav-link">Apply</a></li>
+            <li><a href="index.html" class="nav-link active"><span class="nav-icon">🏠</span>Main Page</a></li>
+            <li><a href="about.html" class="nav-link"><span class="nav-icon">ℹ️</span>About</a></li>
+            <li><a href="team.html" class="nav-link"><span class="nav-icon">👥</span>Our Team</a></li>
+            <li><a href="news.html" class="nav-link"><span class="nav-icon">📰</span>News & Published Work</a></li>
+            <li><a href="apply.html" class="nav-link"><span class="nav-icon">📝</span>Apply</a></li>
         </ul>
     </nav>
 
@@ -244,6 +457,7 @@
     <main>
         <!-- Start Section -->
         <section class="start-section">
+            <h1 class="main-title">Taking Solid Steps Towards AGI with You</h1>
             <div class="prompt-container">
                 <input 
                     type="text" 
@@ -253,12 +467,102 @@
             </div>
         </section>
 
-        <!-- Middle Section -->
-        <section class="middle-section">
-            <h1>Revolutionizing Tomorrow with AI</h1>
-            <p>Welcome to the future of innovation with our cutting-edge artificial intelligence solutions. Unleash unparalleled potential and redefine the boundaries of what's possible by integrating our AI technology into your strategic vision.</p>
-            <button class="learn-more-btn" onclick="window.location.href='about.html'">Learn More</button>
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <h2 class="progress-title">&lt;&lt;&lt; Progress with BufaloAI Laboratories &gt;&gt;&gt;</h2>
+            
+            <div class="progress-container">
+                <!-- Left - Articles -->
+                <div class="articles-section">
+                    <div class="article-card">
+                        <h3 class="article-title">Breaking Through Neural Boundaries</h3>
+                        <p class="article-desc">Latest research on advanced neural architecture optimization techniques.</p>
+                    </div>
+                    <div class="article-card">
+                        <h3 class="article-title">Scaling AI for Education</h3>
+                        <p class="article-desc">How we're revolutionizing learning experiences through intelligent systems.</p>
+                    </div>
+                    <div class="article-card">
+                        <h3 class="article-title">Ethical AI Development</h3>
+                        <p class="article-desc">Our commitment to responsible and transparent AI innovation.</p>
+                    </div>
+                    <div class="learn-more-link">
+                        <a href="news.html">Learn More →</a>
+                    </div>
+                </div>
+
+                <!-- Middle - Statistics -->
+                <div class="stats-section">
+                    <div class="stat-pill">🔢 Tokens Processed: 1.2M+</div>
+                    <div class="stat-pill">👤 Total Users: 850</div>
+                    <div class="stat-pill">🟢 Active Users Online: 42</div>
+                    <div class="stat-pill">📄 Papers Published: 15</div>
+                    <div class="stat-pill">⏱️ Active Time: 18 Months</div>
+                </div>
+
+                <!-- Right - Products -->
+                <div class="products-section">
+                    <div class="product-card">
+                        <h3 class="product-title">BufaloSearch Pro</h3>
+                        <p class="product-desc">Advanced AI-powered search engine tailored for academic excellence.</p>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-title">StudyAssist AI</h3>
+                        <p class="product-desc">Your personal AI tutor for comprehensive learning support.</p>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-title">ResearchHub</h3>
+                        <p class="product-desc">Collaborative platform connecting students with cutting-edge research.</p>
+                    </div>
+                    <div class="learn-more-link">
+                        <a href="about.html">Learn More →</a>
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <!-- Footer Section -->
+        <footer class="footer-section">
+            <div class="footer-container">
+                <!-- Left Side -->
+                <div class="footer-left">
+                    <div class="footer-logo-section">
+                        <div class="footer-logo-text">BufaloAI</div>
+                        <p class="footer-copyright">By Bufalo AI Laboratories<br>© BufaloAI 2026</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" title="Twitter">𝕏</a>
+                        <a href="#" class="social-icon" title="LinkedIn">in</a>
+                        <a href="#" class="social-icon" title="GitHub">GH</a>
+                        <a href="#" class="social-icon" title="Instagram">IG</a>
+                    </div>
+                </div>
+
+                <!-- Right Side - Quick Links -->
+                <div class="footer-right">
+                    <div class="footer-column">
+                        <h3>Main</h3>
+                        <ul>
+                            <li><a href="index.html" class="footer-link">Home</a></li>
+                            <li><a href="about.html" class="footer-link">About Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="news.html" class="footer-link">News & Research</a></li>
+                            <li><a href="team.html" class="footer-link">Our Team</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Connect</h3>
+                        <ul>
+                            <li><a href="apply.html" class="footer-link">Apply Now</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
 
     <script>
@@ -284,6 +588,27 @@
                 alert('AI interface will be implemented in a separate subdomain. Your prompt: ' + this.value);
                 this.value = '';
             }
+        });
+
+        // Footer link hover effects
+        const footerLinks = document.querySelectorAll('.footer-link');
+        footerLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                footerLinks.forEach(l => {
+                    if (l !== this) {
+                        l.style.opacity = '0.5';
+                    } else {
+                        l.classList.add('active');
+                    }
+                });
+            });
+
+            link.addEventListener('mouseleave', function() {
+                footerLinks.forEach(l => {
+                    l.style.opacity = '1';
+                    l.classList.remove('active');
+                });
+            });
         });
     </script>
 </body>
