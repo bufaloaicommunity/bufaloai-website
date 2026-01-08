@@ -4,460 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BufaloAI - Main Page</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            width: 250px;
-            background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
-            transform: translateX(-250px);
-            transition: transform 0.3s ease;
-            z-index: 1000;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .navbar.active {
-            transform: translateX(0);
-        }
-
-        .nav-toggle {
-            position: fixed;
-            left: 10px;
-            top: 20px;
-            background: #d65a00;
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 1001;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-toggle:hover {
-            background: #ff6a00;
-        }
-
-        .nav-links {
-            list-style: none;
-            padding: 80px 20px 20px;
-        }
-
-        .nav-links li {
-            margin: 20px 0;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 15px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            background: #d65a00;
-            transform: translateX(5px);
-        }
-
-        .nav-icon {
-            font-size: 20px;
-        }
-
-        /* Top Right Corner */
-        .top-right {
-            position: fixed;
-            right: 20px;
-            top: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 999;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: bold;
-            color: #d65a00;
-            margin-right: 20px;
-        }
-
-        .auth-btn {
-            padding: 10px 25px;
-            border: 2px solid #d65a00;
-            background: transparent;
-            color: #d65a00;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .auth-btn:hover {
-            background: #d65a00;
-            color: white;
-        }
-
-        /* Start Section */
-        .start-section {
-            min-height: 60vh;
-            background: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 100px 20px 60px;
-        }
-
-        .main-title {
-            font-size: 42px;
-            color: #d65a00;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .prompt-container {
-            width: 100%;
-            max-width: 800px;
-            position: relative;
-        }
-
-        .prompt-input {
-            width: 100%;
-            padding: 20px 25px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 16px;
-            color: #333;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        .prompt-input:focus {
-            border-color: #d65a00;
-            box-shadow: 0 0 0 3px rgba(214, 90, 0, 0.1);
-        }
-
-        .prompt-input::placeholder {
-            color: #999;
-        }
-
-        /* Progress Section */
-        .progress-section {
-            background: white;
-            padding: 60px 20px;
-        }
-
-        .progress-title {
-            text-align: center;
-            font-size: 36px;
-            color: #d65a00;
-            margin-bottom: 50px;
-            font-weight: 700;
-        }
-
-        .progress-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        /* Left Section - Articles */
-        .articles-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .article-card {
-            background: #f5f5f5;
-            border-radius: 12px;
-            padding: 20px;
-            border: 2px solid #e0e0e0;
-            transition: all 0.3s ease;
-        }
-
-        .article-card:hover {
-            border-color: #d65a00;
-            box-shadow: 0 4px 12px rgba(214, 90, 0, 0.1);
-        }
-
-        .article-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .article-desc {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
-        }
-
-        /* Middle Section - Statistics */
-        .stats-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .stat-pill {
-            background: linear-gradient(135deg, #d65a00, #ff6a00);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(214, 90, 0, 0.2);
-        }
-
-        .stat-pill:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(214, 90, 0, 0.3);
-        }
-
-        /* Right Section - Products */
-        .products-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .product-card {
-            background: #f5f5f5;
-            border-radius: 12px;
-            padding: 20px;
-            border: 2px solid #e0e0e0;
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            border-color: #d65a00;
-            box-shadow: 0 4px 12px rgba(214, 90, 0, 0.1);
-        }
-
-        .product-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .product-desc {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
-        }
-
-        /* Learn More Links */
-        .learn-more-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .learn-more-link a {
-            color: #d65a00;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .learn-more-link a:hover {
-            color: #ff6a00;
-        }
-
-        /* Footer Section */
-        .footer-section {
-            background: #000;
-            color: white;
-            padding: 60px 20px 40px;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-        }
-
-        .footer-left {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .footer-logo-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .footer-logo-text {
-            font-size: 28px;
-            font-weight: bold;
-            color: #d65a00;
-        }
-
-        .footer-copyright {
-            font-size: 14px;
-            color: #999;
-            line-height: 1.6;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: #d65a00;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            background: #ff6a00;
-            transform: translateY(-3px);
-        }
-
-        .footer-right {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 40px;
-        }
-
-        .footer-column h3 {
-            font-size: 18px;
-            color: #d65a00;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .footer-column ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .footer-column a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            display: block;
-        }
-
-        .footer-column a:hover {
-            color: #d65a00;
-            padding-left: 5px;
-        }
-
-        .footer-column a.active {
-            color: white;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .progress-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 28px;
-            }
-
-            .progress-title {
-                font-size: 28px;
-            }
-
-            .logo-text {
-                font-size: 18px;
-            }
-
-            .auth-btn {
-                padding: 8px 15px;
-                font-size: 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation Toggle Button -->
     <button class="nav-toggle" onclick="toggleNav()">☰</button>
 
-    <!-- Navigation Bar -->
     <nav class="navbar" id="navbar">
         <ul class="nav-links">
-            <li><a href="index.html" class="nav-link active"><span class="nav-icon">🏠</span>Main Page</a></li>
-            <li><a href="about.html" class="nav-link"><span class="nav-icon">ℹ️</span>About</a></li>
-            <li><a href="team.html" class="nav-link"><span class="nav-icon">👥</span>Our Team</a></li>
-            <li><a href="news.html" class="nav-link"><span class="nav-icon">📰</span>News & Published Work</a></li>
-            <li><a href="apply.html" class="nav-link"><span class="nav-icon">📝</span>Apply</a></li>
+            <li><a href="/" class="nav-link active">
+                <img src="logos/icons8-home-page-100.png" alt="Home" class="nav-icon">Main Page</a></li>
+            <li><a href="/about" class="nav-link">
+                <img src="logos/icons8-buffalo-90.png" alt="About" class="nav-icon">About</a></li>
+            <li><a href="/team" class="nav-link">
+                <img src="logos/icons8-team-90.png" alt="Team" class="nav-icon">Our Team</a></li>
+            <li><a href="/news" class="nav-link">
+                <img src="logos/icons8-news-100.png" alt="News" class="nav-icon">News & Published Work</a></li>
+            <li><a href="/security" class="nav-link">
+                <img src="logos/icons8-protect-100.png" alt="Security" class="nav-icon">Security</a></li>
+            <li><a href="/apply" class="nav-link">
+                <img src="logos/icons8-apply-96.png" alt="Apply" class="nav-icon">Apply</a></li>
         </ul>
     </nav>
 
-    <!-- Top Right Corner -->
     <div class="top-right">
         <span class="logo-text">BufaloAI</span>
-        <button class="auth-btn">Sign In</button>
-        <button class="auth-btn">Log In</button>
+        <img src="logos/icons8-buffalo-90.png" alt="BufaloAI Logo" class="header-logo">
     </div>
 
-    <!-- Main Content -->
     <main>
-        <!-- Start Section -->
         <section class="start-section">
-            <h1 class="main-title">Taking Solid Steps Towards AGI with You</h1>
+            <h1 class="main-title">Secure. Ethical. Reliable.</h1>
             <div class="prompt-container">
                 <input 
                     type="text" 
@@ -467,149 +43,62 @@
             </div>
         </section>
 
-        <!-- Progress Section -->
+        <section class="scroll-animation">
+            <div class="scroll-text">
+                <span>Innovating AI Solutions • Ethical Development • Secure Systems • Research Excellence • </span>
+                <span>Innovating AI Solutions • Ethical Development • Secure Systems • Research Excellence • </span>
+            </div>
+        </section>
+
         <section class="progress-section">
-            <h2 class="progress-title">&lt;&lt;&lt; Progress with BufaloAI Laboratories &gt;&gt;&gt;</h2>
+            <div class="progress-header">
+                <h2 class="progress-title">Progress of BufaloAI Laboratories</h2>
+                <p class="progress-subtitle">As a newly found laboratory, we aim to create modern, efficient and reliable Artificial Intelligence without breaching your security.</p>
+            </div>
             
-            <div class="progress-container">
-                <!-- Left - Articles -->
-                <div class="articles-section">
-                    <div class="article-card">
-                        <h3 class="article-title">Breaking Through Neural Boundaries</h3>
-                        <p class="article-desc">Latest research on advanced neural architecture optimization techniques.</p>
+            <div class="progress-container-new">
+                <div class="news-products-wrapper">
+                    <div class="news-section-new">
+                        <h3 class="section-heading">Latest Research</h3>
+                        <div class="news-card-blank">
+                            <p>Coming Soon...</p>
+                        </div>
+                        <div class="news-card-blank">
+                            <p>Coming Soon...</p>
+                        </div>
+                        <div class="news-card-blank">
+                            <p>Coming Soon...</p>
+                        </div>
+                        <div class="learn-more-link">
+                            <a href="/news">Learn More About Our Research →</a>
+                        </div>
                     </div>
-                    <div class="article-card">
-                        <h3 class="article-title">Scaling AI for Education</h3>
-                        <p class="article-desc">How we're revolutionizing learning experiences through intelligent systems.</p>
-                    </div>
-                    <div class="article-card">
-                        <h3 class="article-title">Ethical AI Development</h3>
-                        <p class="article-desc">Our commitment to responsible and transparent AI innovation.</p>
-                    </div>
-                    <div class="learn-more-link">
-                        <a href="news.html">Learn More →</a>
-                    </div>
-                </div>
 
-                <!-- Middle - Statistics -->
-                <div class="stats-section">
-                    <div class="stat-pill">🔢 Tokens Processed: 1.2M+</div>
-                    <div class="stat-pill">👤 Total Users: 850</div>
-                    <div class="stat-pill">🟢 Active Users Online: 42</div>
-                    <div class="stat-pill">📄 Papers Published: 15</div>
-                    <div class="stat-pill">⏱️ Active Time: 18 Months</div>
-                </div>
-
-                <!-- Right - Products -->
-                <div class="products-section">
-                    <div class="product-card">
-                        <h3 class="product-title">BufaloSearch Pro</h3>
-                        <p class="product-desc">Advanced AI-powered search engine tailored for academic excellence.</p>
-                    </div>
-                    <div class="product-card">
-                        <h3 class="product-title">StudyAssist AI</h3>
-                        <p class="product-desc">Your personal AI tutor for comprehensive learning support.</p>
-                    </div>
-                    <div class="product-card">
-                        <h3 class="product-title">ResearchHub</h3>
-                        <p class="product-desc">Collaborative platform connecting students with cutting-edge research.</p>
-                    </div>
-                    <div class="learn-more-link">
-                        <a href="about.html">Learn More →</a>
+                    <div class="products-section-new">
+                        <h3 class="section-heading">Our Products</h3>
+                        <div class="product-card">
+                            <h4 class="product-title">BufaloSearch Pro</h4>
+                            <p class="product-desc">Advanced AI-powered search engine tailored for academic excellence.</p>
+                        </div>
+                        <div class="product-card">
+                            <h4 class="product-title">StudyAssist AI</h4>
+                            <p class="product-desc">Your personal AI tutor for comprehensive learning support.</p>
+                        </div>
+                        <div class="product-card">
+                            <h4 class="product-title">ResearchHub</h4>
+                            <p class="product-desc">Collaborative platform connecting students with cutting-edge research.</p>
+                        </div>
+                        <div class="learn-more-link">
+                            <a href="/news">Learn More About Our Products →</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Footer Section -->
-        <footer class="footer-section">
-            <div class="footer-container">
-                <!-- Left Side -->
-                <div class="footer-left">
-                    <div class="footer-logo-section">
-                        <div class="footer-logo-text">BufaloAI</div>
-                        <p class="footer-copyright">By Bufalo AI Laboratories<br>© BufaloAI 2026</p>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="social-icon" title="Twitter">𝕏</a>
-                        <a href="#" class="social-icon" title="LinkedIn">in</a>
-                        <a href="#" class="social-icon" title="GitHub">GH</a>
-                        <a href="#" class="social-icon" title="Instagram">IG</a>
-                    </div>
-                </div>
-
-                <!-- Right Side - Quick Links -->
-                <div class="footer-right">
-                    <div class="footer-column">
-                        <h3>Main</h3>
-                        <ul>
-                            <li><a href="index.html" class="footer-link">Home</a></li>
-                            <li><a href="about.html" class="footer-link">About Us</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Resources</h3>
-                        <ul>
-                            <li><a href="news.html" class="footer-link">News & Research</a></li>
-                            <li><a href="team.html" class="footer-link">Our Team</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Connect</h3>
-                        <ul>
-                            <li><a href="apply.html" class="footer-link">Apply Now</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </main>
 
-    <script>
-        // Toggle Navigation
-        function toggleNav() {
-            const navbar = document.getElementById('navbar');
-            navbar.classList.toggle('active');
-        }
+    <footer id="footer-container"></footer>
 
-        // Close nav when clicking outside
-        document.addEventListener('click', function(event) {
-            const navbar = document.getElementById('navbar');
-            const navToggle = document.querySelector('.nav-toggle');
-            
-            if (!navbar.contains(event.target) && !navToggle.contains(event.target)) {
-                navbar.classList.remove('active');
-            }
-        });
-
-        // Prompt input handler
-        document.querySelector('.prompt-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && this.value.trim() !== '') {
-                alert('AI interface will be implemented in a separate subdomain. Your prompt: ' + this.value);
-                this.value = '';
-            }
-        });
-
-        // Footer link hover effects
-        const footerLinks = document.querySelectorAll('.footer-link');
-        footerLinks.forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                footerLinks.forEach(l => {
-                    if (l !== this) {
-                        l.style.opacity = '0.5';
-                    } else {
-                        l.classList.add('active');
-                    }
-                });
-            });
-
-            link.addEventListener('mouseleave', function() {
-                footerLinks.forEach(l => {
-                    l.style.opacity = '1';
-                    l.classList.remove('active');
-                });
-            });
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
